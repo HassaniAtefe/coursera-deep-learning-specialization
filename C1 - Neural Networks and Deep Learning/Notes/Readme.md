@@ -249,7 +249,7 @@ Here are the course summary as its given on the course [link](https://www.course
   	d(B)  = d(z)
   ```
 
-- From the above we can conclude the logistic regression pseudo code:
+- From the above, we can conclude the logistic regression pseudo code:
 
   ```
   	J = 0; dw1 = 0; dw2 =0; db = 0;                 # Devs.
@@ -280,15 +280,38 @@ Here are the course summary as its given on the course [link](https://www.course
 
 - So there will be two inner loops to implement the logistic regression.
 
-- Vectorization is so important on deep learning to reduce loops. In the last code we can make the whole loop in one step using vectorization!
+- Vectorization is so important on deep learning to reduce loops. In the last code, we can make the whole loop in one step using vectorization!
 
 ### Vectorization
 
-- Deep learning shines when the dataset are big. However for loops will make you wait a lot for a result. Thats why we need vectorization to get rid of some of our for loops.
+- Deep learning shines when the dataset is big. However for loops will make you wait a lot for a result. That's why we need vectorization to get rid of some of our for loops.
 - NumPy library (dot) function is using vectorization by default.
-- The vectorization can be done on CPU or GPU thought the SIMD operation. But its faster on GPU.
+- The vectorization can be done on CPU or GPU thought the SIMD operation. But it's faster on GPU.
 - Whenever possible avoid for loops.
-- Most of the NumPy library methods are vectorized version.
+- Most of the NumPy library methods are vectorized versions.
+- Example of comparing vectorized and non-vectorized versions:
+
+```Python
+import time
+
+a = np.random.rand(1000000)
+b = np.random.rand(1000000)
+ 
+tic = time.time()
+c = np.dot(a,b)
+toc = time.time()
+
+print("c:",c)
+print(f'Vectorized version: {str(1000*(toc-tic))}ms')
+
+c=0
+tic=time.time()
+for i in range(1000000):
+  c+= a[i]*b[i]
+toc=time.time()
+print("c:",c)
+print(f'Non-vectorized version(For loop): {str(1000*(toc-tic))}ms')
+```
 
 ### Vectorizing Logistic Regression
 
