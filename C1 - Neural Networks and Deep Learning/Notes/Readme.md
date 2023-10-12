@@ -309,6 +309,7 @@ tic=time.time()
 for i in range(1000000):
   c+= a[i]*b[i]
 toc=time.time()
+
 print("c:",c)
 print(f'Non-vectorized version(For loop): {str(1000*(toc-tic))}ms')
 ```
